@@ -179,11 +179,14 @@ function returnBook() {
 
 function searchBooks() {
     const searchInput = document.getElementById('search').value.trim().toLowerCase();
+    allBooks = libraryQueue.items.concat(borrowedQueue.items)
+        // include the borrowed books to the search space
+        // libraryQueue only contains the non-borrowed books
     if (!searchInput) {
-        displayBooks(libraryQueue.items);
+        displayBooks(allBooks);
         return;
     }
-    const filteredBooks = libraryQueue.items.filter(book => 
+    const filteredBooks = allBooks.filter(book => 
         book.id.includes(searchInput) || 
         book.title.toLowerCase().includes(searchInput) || 
         book.author.toLowerCase().includes(searchInput)
