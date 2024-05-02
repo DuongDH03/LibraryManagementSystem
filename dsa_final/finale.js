@@ -191,11 +191,11 @@ function searchBooks() {
     displayBooks(filteredBooks);
     }
 
-function displayBooks() {
+function displayBooks(books = libraryQueue.items.concat(borrowedQueue.items)) {
     const bookList = document.getElementById('bookList');
     bookList.innerHTML = '';
     const allBooks = libraryQueue.items.concat(borrowedQueue.items);
-    allBooks.forEach(book => {
+    books.forEach(book => {
         const status = book.status === 'borrowed' ? 'Borrowed' : 'Available';
         const row = document.createElement('tr');
         row.innerHTML = `
